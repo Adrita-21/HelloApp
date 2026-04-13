@@ -1,27 +1,26 @@
 import java.util.Scanner;
 
-public class SubstringCompare {
+public class CharArrayCompare {
 
-    // Create substring using charAt()
-    public static String createSubstring(String str, int start, int end) {
-        String result = "";
+    // Return characters manually
+    public static char[] getChars(String str) {
+        char[] arr = new char[str.length()];
 
-        for (int i = start; i < end; i++) {
-            result += str.charAt(i);
+        for (int i = 0; i < str.length(); i++) {
+            arr[i] = str.charAt(i);
         }
 
-        return result;
+        return arr;
     }
 
-    // Compare strings using charAt()
-    public static boolean compareStrings(String s1, String s2) {
-        if (s1.length() != s2.length()) return false;
+    // Compare two char arrays
+    public static boolean compareArrays(char[] a, char[] b) {
+        if (a.length != b.length) return false;
 
-        for (int i = 0; i < s1.length(); i++) {
-            if (s1.charAt(i) != s2.charAt(i)) {
-                return false;
-            }
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) return false;
         }
+
         return true;
     }
 
@@ -31,19 +30,11 @@ public class SubstringCompare {
         System.out.print("Enter string: ");
         String str = sc.next();
 
-        System.out.print("Enter start index: ");
-        int start = sc.nextInt();
+        char[] arr1 = getChars(str);
+        char[] arr2 = str.toCharArray();
 
-        System.out.print("Enter end index: ");
-        int end = sc.nextInt();
+        boolean result = compareArrays(arr1, arr2);
 
-        String sub1 = createSubstring(str, start, end);
-        String sub2 = str.substring(start, end);
-
-        boolean result = compareStrings(sub1, sub2);
-
-        System.out.println("Substring using charAt(): " + sub1);
-        System.out.println("Substring using substring(): " + sub2);
-        System.out.println("Are both same? " + result);
+        System.out.println("Are both arrays same? " + result);
     }
-}
+}w
