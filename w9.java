@@ -1,12 +1,21 @@
 import java.util.Scanner;
 
-public class CompareStrings {
+public class SubstringCompare {
 
-    // Method using charAt()
-    public static boolean compareUsingCharAt(String s1, String s2) {
-        if (s1.length() != s2.length()) {
-            return false;
+    // Create substring using charAt()
+    public static String createSubstring(String str, int start, int end) {
+        String result = "";
+
+        for (int i = start; i < end; i++) {
+            result += str.charAt(i);
         }
+
+        return result;
+    }
+
+    // Compare strings using charAt()
+    public static boolean compareStrings(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
 
         for (int i = 0; i < s1.length(); i++) {
             if (s1.charAt(i) != s2.charAt(i)) {
@@ -19,22 +28,22 @@ public class CompareStrings {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter first string: ");
-        String str1 = sc.next();
+        System.out.print("Enter string: ");
+        String str = sc.next();
 
-        System.out.print("Enter second string: ");
-        String str2 = sc.next();
+        System.out.print("Enter start index: ");
+        int start = sc.nextInt();
 
-        boolean resultCharAt = compareUsingCharAt(str1, str2);
-        boolean resultEquals = str1.equals(str2);
+        System.out.print("Enter end index: ");
+        int end = sc.nextInt();
 
-        System.out.println("Using charAt(): " + resultCharAt);
-        System.out.println("Using equals(): " + resultEquals);
+        String sub1 = createSubstring(str, start, end);
+        String sub2 = str.substring(start, end);
 
-        if (resultCharAt == resultEquals) {
-            System.out.println("Both methods give SAME result");
-        } else {
-            System.out.println("Results are DIFFERENT");
-        }
+        boolean result = compareStrings(sub1, sub2);
+
+        System.out.println("Substring using charAt(): " + sub1);
+        System.out.println("Substring using substring(): " + sub2);
+        System.out.println("Are both same? " + result);
     }
 }
